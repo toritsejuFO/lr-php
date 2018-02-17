@@ -1,0 +1,33 @@
+body{
+  background-color: #024;
+}
+
+.my-form-div{
+  margin: auto;
+  padding-top: 4em;
+  width: 40%;
+  min-width: 320px;
+  max-width: 360px;
+  padding-bottom: 4em;
+}
+
+.my-form{
+  background-color: #aaa;
+  border: 1px solid #133;
+  box-shadow: 2px 2px 10px;
+}
+
+label, p{
+  color: #222;
+}
+
+.input-lg{
+  background-color: #ddd;
+}
+
+.btn{
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: #124;
+  color: #aaa;
+}
