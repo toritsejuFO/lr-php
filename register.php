@@ -1,6 +1,18 @@
 <?php
 require_once 'constants.php';
 
+function email_exists($db, $email) {
+
+ $sql = "SELECT count(*) FROM  users  WHERE email = '" . $email ."'"; 
+ $query = $db->prepare($sql); 
+ $query->execute(); 
+ $count = $query->fetchColumn(); 
+
+
+ return $count == 0 ? false : true;
+
+}
+
 if( !empty($_POST) ){
   $_errors = array();
 
@@ -38,7 +50,7 @@ if( !empty($_POST) ){
   if( empty($_errors) ){
     $db = new pdo("mysql:host=". DB_HOST .";dbname=". DB_NAME, DB_USER, DB_PASS);
 
-    if( $db ){
+    if( $db && email_exists($db, $_POST['email'] ) == false){
       $sql = "INSERT INTO users(`firstname`, `lastname`, `email`, `password`)
             VALUES('{$_POST['firstname']}', '{$_POST['lastname']}', '{$_POST['email']}', '". password_hash($_POST['password'], PASSWORD_DEFAULT) ."')";
 
@@ -51,7 +63,7 @@ if( !empty($_POST) ){
     }
 
   }
-$msg = "Registration was unsucessful";
+$msg = "Registration was unsucessful email exists";
 }
 
 ?>
